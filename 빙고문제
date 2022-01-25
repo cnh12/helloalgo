@@ -1,0 +1,101 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.StringTokenizer;
+
+public class main {
+
+	public static void main(String[] args) throws IOException{
+		// TODO Auto-generated method stub
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		int[][] arr = new int[5][5];
+		for(int i = 0 ; i < 5; i++) {
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			for(int j = 0 ; j < 5; j++) {
+				arr[i][j] = Integer.parseInt(st.nextToken());
+			}
+		}
+		int[][] brr = new int[5][5];
+		for(int i = 0 ; i < 5; i++) {
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			for(int j = 0 ; j < 5; j++) {
+				brr[i][j] = Integer.parseInt(st.nextToken());
+			}
+		}
+		
+		/*
+		for(int i = 0 ; i < 5; i++) {			
+			for(int j = 0 ; j < 5; j++) {
+				System.out.print(arr[i][j]+" ");
+			}
+			System.out.println();
+		}
+		for(int i = 0 ; i < 5; i++) {			
+			for(int j = 0 ; j < 5; j++) {
+				System.out.print(brr[i][j]+" ");
+			}
+			System.out.println();
+		}
+		*/
+		
+		int[] crr = new int[12];
+		for(int i = 0 ; i < 5; i++) {			
+			for(int j = 0 ; j < 5; j++) {
+				if(brr[i][j] == 1) {
+					if(i==0) crr[0]++;
+					if(i==1) crr[1]++;
+					if(i==2) crr[2]++;
+					if(i==3) crr[3]++;
+					if(i==4) crr[4]++;
+					if(j==0) crr[5]++;
+					if(j==1) crr[6]++;
+					if(j==2) crr[7]++;
+					if(j==3) crr[8]++;
+					if(j==4) crr[9]++;
+					if(j==4) crr[9]++;
+					if(i==j) crr[10]++;
+					if(i+j==12) crr[11]++;
+				}
+			}
+		}
+		int cnt = 0;
+		for(int i : crr) {
+			if(i == 5) cnt++;
+		}
+		
+		ArrayList<Integer> res = new ArrayList<>();
+		for(int i = 0 ; i < 5; i++) {			
+			for(int j = 0 ; j < 5; j++) {
+				if(brr[i][j] == 0) {	
+					int temp = 0;
+					if(i==0&&crr[0]==4) temp++;
+					if(i==1&&crr[1]==4) temp++;
+					if(i==2&&crr[2]==4) temp++;
+					if(i==3&&crr[3]==4) temp++;
+					if(i==4&&crr[4]==4) temp++;
+					if(j==0&&crr[5]==4) temp++;
+					if(j==1&&crr[6]==4) temp++;
+					if(j==2&&crr[7]==4) temp++;
+					if(j==3&&crr[8]==4) temp++;
+					if(j==4&&crr[9]==4) temp++;
+					if(j==4&&crr[10]==4) temp++;
+					if(i==j&&crr[11]==4) temp++;
+					if(i+j==12&&crr[12]==4) temp++;
+					
+					if(temp>=1) res.add(arr[i][j]);
+				}
+			}
+		}
+		
+		Collections.sort(res);
+		System.out.println(res.get(0));
+		
+		
+
+	}
+
+}
